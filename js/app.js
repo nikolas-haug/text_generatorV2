@@ -22,9 +22,11 @@ const copyBtn = document.querySelector('.copy-btn');
 const libraryList = document.querySelector('.library__list');
 const libraryBooks = document.querySelectorAll('input[type="radio"]');
 
+let wordCount = 25;
+
 function generateLibrary(books) {
     books.forEach((book, i)=> {
-        let radioAttrs = {'type': 'radio', 'name': 'author', 'id': 'radio' + i };
+        let radioAttrs = {'type': 'radio', 'name': 'author', 'id': 'radio' + i, 'data-id': i };
 
         let newListItem = document.createElement('li');
         let newRadio = document.createElement('input');
@@ -35,8 +37,7 @@ function generateLibrary(books) {
             setCurrentText(book.text);
         }
         newRadio.addEventListener('change', function(e) {
-            console.log(e);
-            console.log(this.checked);
+            setCurrentText(library[this.getAttribute('data-id')].text);
         });
         newLabel.setAttribute('for', 'radio' + i);
         newLabel.textContent = book.title;
@@ -54,14 +55,9 @@ function setAttributes(el, attrs) {
 }
 
 function setCurrentText(text) {
-    generatedText.value = text;
+    let numWords = wordCount;
+
+    generatedText.value = text.split(' ', numWords).join(' ');
 }
 
-
-
 generateLibrary(library);
-
-{/* <li>
-    <input type="radio" name="author" id="radio">
-    <label for="radio">radio</label>
-</li> */}
