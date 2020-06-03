@@ -21,8 +21,10 @@ const generatedText = document.querySelector('#generated-text');
 const copyBtn = document.querySelector('.copy-btn');
 const libraryList = document.querySelector('.library__list');
 const libraryBooks = document.querySelectorAll('input[type="radio"]');
+const wordCountInput = document.querySelector('.word-count__input');
 
 let wordCount = 25;
+let chosenText;
 
 function generateLibrary(books) {
     books.forEach((book, i)=> {
@@ -32,9 +34,11 @@ function generateLibrary(books) {
         let newRadio = document.createElement('input');
         let newLabel = document.createElement('label');
         setAttributes(newRadio, radioAttrs);
-        if(i === 0) {
+
+        if(i === Math.floor(Math.random() * books.length) || i === 0) {
             newRadio.setAttribute('checked', true);
             setCurrentText(book.text);
+            chosenText = book;
         }
         newRadio.addEventListener('change', function(e) {
             setCurrentText(library[this.getAttribute('data-id')].text);
@@ -56,8 +60,18 @@ function setAttributes(el, attrs) {
 
 function setCurrentText(text) {
     let numWords = wordCount;
-
+    wordCountInput.value = wordCount;
     generatedText.value = text.split(' ', numWords).join(' ');
 }
+
+wordCountInput.addEventListener('click', function(e) {
+    this.focus();
+    this.select(); 
+});
+
+wordCountInput.addEventListener('input', function(e) {
+    wordCount = e.target.value;
+    generatedText.value = chosenText.text.split(' ', wordCount).join(' ');
+});
 
 generateLibrary(library);
