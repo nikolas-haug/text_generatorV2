@@ -15,40 +15,23 @@
 
     <main class="container-med">
         <div class="row">
-            <section class="col-med-6">
+            <section class="col-12 col-med-6">
                 <textarea name="text-space" id="generated-text" cols="30" rows="10" readonly></textarea>
-                <button class="full-button"><i class="icon-clipboard"></i> Copy Text</button>
+                <div class="word-count">
+                    <input type="number" placeholder="word count">
+                </div>
+                <button class="copy-btn full-button"><i class="icon-clipboard"></i> Copy Text</button>
             </section>
 
-            <section class="col-med-6">
+            <section class="col-12 col-med-6">
                 <div class="library">
                     <h3><i class="icon-book"></i> Library</h3>
-                    <ul class="library__list">
-                        <li>
-                            <input type="radio" name="author" id="check">
-                            <label for="check">radio</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="author" id="check2">
-                            <label for="check2">radio</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="author" id="check3">
-                            <label for="check3">radio</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="author" id="check4">
-                            <label for="check4">radio</label>
-                        </li>
-                        <li>
-                            <input type="radio" name="author" id="check5">
-                            <label for="check5">radio</label>
-                        </li>
-                    </ul>
+                    <ul class="library__list"></ul>
                 </div>
             </section>
         </div>
     </main>
     
+    <script src="js/app.js"></script>
 </body>
 </html>

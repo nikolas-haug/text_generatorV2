@@ -5,20 +5,13 @@
 */
 
 .library {
-    background-color: #f7f7f7;
+    background-color: $color-primary;
     padding: 1rem;
     border-radius: .5rem;
-    // box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .4);
-    cursor: pointer;
-    transition: all .3s;
 }
 
-.library ul {
+.library .library__list {
     list-style: none;
-}
-
-.library ul li {
-    // padding: .5rem;
 }
 
 input[type="radio"] {

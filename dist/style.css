@@ -1476,13 +1476,11 @@ kbd {
 *
 */
 .library {
-  background-color: #f7f7f7;
+  background-color: #ccc;
   padding: 1rem;
-  border-radius: .5rem;
-  cursor: pointer;
-  transition: all .3s; }
+  border-radius: .5rem; }
 
-.library ul {
+.library .library__list {
   list-style: none; }
 
 input[type="radio"] {
