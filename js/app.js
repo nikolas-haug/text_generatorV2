@@ -14,6 +14,14 @@ const library = [
     {
         title: 'The Odyssey',
         text: "Tell me, O muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy. Many cities did he visit, and many were the nations with whose manners and customs he was acquainted; moreover he suffered much by sea while trying to save his own life and bring his men safely home; but do what he might he could not save his men, for they perished through their own sheer folly in eating the cattle of the Sun-god Hyperion; so the god prevented them from ever reaching home. Tell me, too, about all these things, O daughter of Jove, from whatsoever source you may know them. So now all who escaped death in battle or by shipwreck had got safely home except Ulysses, and he, though he was longing to return to his wife and country, was detained by the goddess Calypso, who had got him into a large cave and wanted to marry him. But as years went by, there came a time when the gods settled that he should go back to Ithaca; even then, however, when he was among his own people, his troubles were not yet over; nevertheless all the gods had now begun to pity him except Neptune, who still persecuted him without ceasing and would not let him get home. Now Neptune had gone off to the Ethiopians, who are at the world's end, and lie in two halves, the one looking West and the other East. He had gone there to accept a hecatomb of sheep and oxen, and was enjoying himself at his festival; but the other gods met in the house of Olympian Jove, and the sire of gods and men spoke first. At that moment he was thinking of Aegisthus, who had been killed by Agamemnon's son Orestes; so he said to the other gods: 'See now, how men lay blame upon us gods for what is after all nothing but their own folly. Look at Aegisthus; he must needs make love to Agamemnon's wife unrighteously and then kill Agamemnon, though he knew it would be the death of him; for I sent Mercury to warn him not to do either of these things, inasmuch as Orestes would be sure to take his revenge when he grew up and wanted to return home. Mercury told him this in all good will but he would not listen, and now he has paid for everything in full.'"
+    },
+    {
+        title: 'The Faerie Queene',
+        text: "A gentle Knight was pricking on the plaine, Ycladd in mightie armes and silver shielde, Wherein old dints of deepe wounds did remaine, The cruel markes of many'a bloudy fielde; Yet armes till that time did he never wield: His angry steede did chide his foming bitt, As much disdayning to the curbe to yield: Full jolly knight he seemd, and faire did sitt, As one for knightly giusts and fierce encounters fitt. And on his brest a bloudie Crosse he bore, The deare remembrance of his dying Lord, For whose sweete sake that glorious badge he wore, And dead as living ever him ador'd: Upon his shield the like was also scor'd, For soveraine hope,°which in his helpe he had: Right faithfull true he was in deede and word, But of his cheere did seeme too solemne sad; Yet nothing did he dread, but ever was ydrad. Upon a great adventure he was bond, That greatest Gloriana° to him gave, That greatest Glorious Queene of Faerie lond, To winne him worship, and her grace to have,Which of all earthly things he most did crave; And ever as he rode, his hart did earne To prove his puissance in battell brave Upon his foe, and his new force to learne; Upon his foe, a Dragon° horrible and stearne."
+    },
+    {
+        title: 'Anna Karenina',
+        text: 'Happy families are all alike; every unhappy family is unhappy in its own way. Everything was in confusion in the Oblonskys’ house. The wife had discovered that the husband was carrying on an intrigue with a French girl, who had been a governess in their family, and she had announced to her husband that she could not go on living in the same house with him. This position of affairs had now lasted three days, and not only the husband and wife themselves, but all the members of their family and household, were painfully conscious of it. Every person in the house felt that there was no sense in their living together, and that the stray people brought together by chance in any inn had more in common with one another than they, the members of the family and household of the Oblonskys. The wife did not leave her own room, the husband had not been at home for three days. The children ran wild all over the house; the English governess quarreled with the housekeeper, and wrote to a friend asking her to look out for a new situation for her; the man-cook had walked off the day before just at dinner time; the kitchen-maid, and the coachman had given warning. Three days after the quarrel, Prince Stepan Arkadyevitch Oblonsky—Stiva, as he was called in the fashionable world—woke up at his usual hour, that is, at eight o’clock in the morning, not in his wife’s bedroom, but on the leather-covered sofa in his study. He turned over his stout, well-cared-for person on the springy sofa, as though he would sink into a long sleep again; he vigorously embraced the pillow on the other side and buried his face in it; but all at once he jumped up, sat up on the sofa, and opened his eyes.'
     }
 ];
 
@@ -22,6 +30,7 @@ const copyBtn = document.querySelector('.copy-btn');
 const libraryList = document.querySelector('.library__list');
 const libraryBooks = document.querySelectorAll('input[type="radio"]');
 const wordCountInput = document.querySelector('.word-count__input');
+const copyTextBtn = document.querySelector('.copy-btn');
 
 let wordCount = 25;
 let chosenText;
@@ -42,6 +51,7 @@ function generateLibrary(books) {
         }
         newRadio.addEventListener('change', function(e) {
             setCurrentText(library[this.getAttribute('data-id')].text);
+            chosenText = library[this.getAttribute('data-id')];
         });
         newLabel.setAttribute('for', 'radio' + i);
         newLabel.textContent = book.title;
@@ -72,6 +82,17 @@ wordCountInput.addEventListener('click', function(e) {
 wordCountInput.addEventListener('input', function(e) {
     wordCount = e.target.value;
     generatedText.value = chosenText.text.split(' ', wordCount).join(' ');
+});
+
+copyTextBtn.addEventListener('click', function(e) {
+    generatedText.select();
+    document.execCommand('copy');
+    document.querySelector('.copy-message').textContent = 'copied!';
+    setTimeout(() => {
+        document.querySelector('.copy-message').textContent = '';
+    }, 3000);
+
+    // this.dataset.message = 'test content';
 });
 
 generateLibrary(library);
