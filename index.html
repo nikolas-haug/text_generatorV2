@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Text Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/style.css">
 </head>
 <body>
@@ -15,16 +16,16 @@
 
     <main class="container-med">
         <div class="row">
-            <section class="col-12 col-med-6">
+            <section class="col-12 col-med-6 text-section">
                 <textarea name="text-space" id="generated-text" cols="30" rows="10" readonly></textarea>
-                <div class="word-count">
+                <div class="word-count margin-top-auto">
                     <label for="word-count">Word Count</label>
                     <input id="word-count" type="number" placeholder="word count" class="word-count__input">
                 </div>
                 <button class="copy-btn full-button" data-tooltip="copied!"><i class="icon-clipboard"></i> Copy Text</button>
             </section>
 
-            <section class="col-12 col-med-6">
+            <section class="col-12 col-med-6 library-section">
                 <div class="library">
                     <h3><i class="icon-book"></i> Library</h3>
                     <ul class="library__list"></ul>
