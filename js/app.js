@@ -37,7 +37,7 @@ const library = [
     },
     {
         title: 'The Decameron',
-        text: '"It is a seemly thing, dearest ladies, that whatsoever a man doth, he give it beginning from the holy and admirable name of Him who is the maker of all things. Wherefore, it behoving me, as the first, to give commencement to our story-telling, I purpose to begin with one of His marvels, to the end that, this being heard, our hope in Him, as in a thing immutable, may be confirmed and His name be ever praised of us. It is manifest that, like as things temporal are all transitory and mortal, even so both within and without are they full of annoy and anguish and travail and subject to infinite perils, against which it is indubitable that we, who live enmingled therein and who are indeed part and parcel thereof, might avail neither to endure nor to defend ourselves, except God\'s especial grace lent us strength and foresight which latter, it is not to be believed, descendeth unto us and upon us by any merit of our own, but of the proper motion of His own benignity and the efficacy of the prayers of those who were mortals even as we are and having diligently ensued His commandments, what while they were on life, are now with Him become eternal and blessed and unto whom we,—belike not daring to address ourselves unto the proper presence of so august a judge,—proffer our petitions of the things which we deem needful unto ourselves, as unto advocates[29] informed by experience of our frailty. And this more we discern in Him, full as He is of compassionate liberality towards us, that, whereas it chanceth whiles (the keenness of mortal eyes availing not in any wise to penetrate the secrets of the Divine intent), that we peradventure, beguiled by report, make such an one our advocate unto His majesty, who is outcast from His presence with an eternal banishment,—nevertheless He, from whom nothing is hidden, having regard rather to the purity of the suppliant\'s intent than to his ignorance or to the reprobate estate of him whose intercession be invoketh, giveth ear unto those who pray unto the latter, as if he were in very deed blessed in His aspect. The which will manifestly appear from the story which I purpose to relate; I say manifestly, ensuing, not the judgment of God, but that of men.'
+        text: 'It is a seemly thing, dearest ladies, that whatsoever a man doth, he give it beginning from the holy and admirable name of Him who is the maker of all things. Wherefore, it behoving me, as the first, to give commencement to our story-telling, I purpose to begin with one of His marvels, to the end that, this being heard, our hope in Him, as in a thing immutable, may be confirmed and His name be ever praised of us. It is manifest that, like as things temporal are all transitory and mortal, even so both within and without are they full of annoy and anguish and travail and subject to infinite perils, against which it is indubitable that we, who live enmingled therein and who are indeed part and parcel thereof, might avail neither to endure nor to defend ourselves, except God\'s especial grace lent us strength and foresight which latter, it is not to be believed, descendeth unto us and upon us by any merit of our own, but of the proper motion of His own benignity and the efficacy of the prayers of those who were mortals even as we are and having diligently ensued His commandments, what while they were on life, are now with Him become eternal and blessed and unto whom we,—belike not daring to address ourselves unto the proper presence of so august a judge,—proffer our petitions of the things which we deem needful unto ourselves, as unto advocates[29] informed by experience of our frailty. And this more we discern in Him, full as He is of compassionate liberality towards us, that, whereas it chanceth whiles (the keenness of mortal eyes availing not in any wise to penetrate the secrets of the Divine intent), that we peradventure, beguiled by report, make such an one our advocate unto His majesty, who is outcast from His presence with an eternal banishment,—nevertheless He, from whom nothing is hidden, having regard rather to the purity of the suppliant\'s intent than to his ignorance or to the reprobate estate of him whose intercession be invoketh, giveth ear unto those who pray unto the latter, as if he were in very deed blessed in His aspect. The which will manifestly appear from the story which I purpose to relate; I say manifestly, ensuing, not the judgment of God, but that of men.'
     }
 ];
 
@@ -74,18 +74,29 @@ libraryList.addEventListener('change', function(e) {
     if(target.className !== 'radio-btn' && target.className !== 'radio-label') {
         return;
     }
-    setCurrentText(library[target.getAttribute('data-id')].text);
     chosenText = library[target.getAttribute('data-id')];
+    setCurrentText(library[target.getAttribute('data-id')].text);
 });
 
 const setCurrentText = (text) => {
     let numWords = wordCount;
     wordCountInput.value = wordCount;
     generatedText.value = text.split(' ', numWords).join(' ');
+    checkInputLength();
+}
+
+const checkInputLength = () => {
+    if(!chosenText) return;
+    let maxLength = chosenText.text.split(' ').length;
+    if(wordCount > maxLength) {
+        wordCount = maxLength;
+        wordCountInput.value = maxLength;
+    }
 }
 
 wordCountInput.addEventListener('input', function(e) {
     wordCount = e.target.value;
+    checkInputLength();
     generatedText.value = chosenText.text.split(' ', wordCount).join(' ');
 });
 

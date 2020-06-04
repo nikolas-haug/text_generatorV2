@@ -1480,11 +1480,14 @@ body {
   background: url("../images/old-books-on-shelf.jpeg") no-repeat;
   background-size: cover; }
 
+header {
+  padding: .5rem 0; }
+
 main {
   background-color: #fafafa;
-  padding-top: 2.5rem;
+  margin-top: 3.5rem;
   margin-bottom: 3.5rem;
-  border-radius: .2rem;
+  border-radius: .5rem;
   box-shadow: 0 2px 7px #3f4340; }
 
 .text-section {
