@@ -1483,6 +1483,7 @@ body {
 main {
   background-color: #fafafa;
   padding-top: 2.5rem;
+  margin-bottom: 3.5rem;
   border-radius: .2rem;
   box-shadow: 0 2px 7px #3f4340; }
 
@@ -1493,7 +1494,7 @@ main {
 .library {
   background-color: #6B8773;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border-radius: .5rem;
   color: #fafafa; }
 
