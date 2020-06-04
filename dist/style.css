@@ -1489,6 +1489,10 @@ main {
   margin-bottom: 3.5rem;
   border-radius: .5rem;
   box-shadow: 0 2px 7px #3f4340; }
+  @media only screen and (max-width: 750px) {
+    main {
+      margin-top: 0;
+      margin-bottom: 0; } }
 
 .text-section {
   display: flex;
