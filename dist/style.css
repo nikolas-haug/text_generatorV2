@@ -1481,7 +1481,12 @@ body {
   background-size: cover; }
 
 header {
-  padding: .5rem 0; }
+  padding: 1rem 0; }
+  header h1 {
+    text-shadow: 0 2px 3px #3f4340; }
+  header p {
+    font-weight: 600;
+    line-height: 1.3; }
 
 main {
   background-color: #fafafa;
