@@ -87,12 +87,50 @@ wordCountInput.addEventListener('input', function(e) {
 copyTextBtn.addEventListener('click', function(e) {
     generatedText.select();
     document.execCommand('copy');
-    document.querySelector('.copy-message').textContent = 'copied!';
-    setTimeout(() => {
-        document.querySelector('.copy-message').textContent = '';
-    }, 3000);
+  
+    // if we have tooltip HTML...
+    let tooltipHtml = e.target.dataset.tooltip;
+    if (!tooltipHtml) return;
 
-    // this.dataset.message = 'test content';
+    // ...create the tooltip element
+    tooltipElem = document.createElement('div');
+    tooltipElem.className = 'tooltip';
+    tooltipElem.innerHTML = tooltipHtml;
+    document.body.append(tooltipElem);
+
+    // position it above the annotated element (top-center)
+    let coords = e.target.getBoundingClientRect();
+
+    let left = coords.left + (e.target.offsetWidth - tooltipElem.offsetWidth) / 2;
+    if (left < 0) left = 0; // don't cross the left window edge
+
+    let top = coords.top - tooltipElem.offsetHeight - 5;
+    if (top < 0) { // if crossing the top window edge, show below instead
+      top = coords.top + e.target.offsetHeight + 5;
+    }
+
+    tooltipElem.style.left = left + 'px';
+    tooltipElem.style.top = top + 'px';
+    // remove tooltip after set timeout
+    setTimeout(() => {
+        tooltipElem.remove();
+    }, 3000);
 });
 
 generateLibrary(library);
+
+// event is added for the parent of #submit-button
+// document.querySelector("#button-container").addEventListener('click', function(e) {
+//     let target = e.target;
+
+// 	if(target !== 'submit-button') {
+//         console.log(`${target.className} clicked!`);
+        
+// 	}
+// });
+
+// #submit-button is dynamically created
+// document.querySelector("#button-container").innerHTML = '<button id="submit-button" class="test">Submit</button>';
+
+// click on #submit-button will now work
+// document.querySelector("#submit-button").click();
