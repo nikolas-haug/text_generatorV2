@@ -137,6 +137,7 @@ const setCurrentText = (text) => {
     let numWords = wordCount;
     wordCountInput.value = wordCount;
     generatedText.value = text.split(' ', numWords).join(' ');
+    wordCountInput.style.color = 'initial';
     checkInputLength();
 }
 
@@ -146,6 +147,7 @@ const checkInputLength = () => {
     if(wordCount > maxLength) {
         wordCount = maxLength;
         wordCountInput.value = maxLength;
+        wordCountInput.style.color = 'red';
     }
 }
 
