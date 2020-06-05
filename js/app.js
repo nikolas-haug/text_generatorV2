@@ -46,16 +46,71 @@ const libraryList = document.querySelector('.library__list');
 const wordCountInput = document.querySelector('.word-count__input');
 const copyTextBtn = document.querySelector('.copy-btn');
 
+// pagination variables
+// list = library
+var pageList = new Array();
+var currentPage = 1;
+var numberPerPage = 5;
+var numberOfPages = getNumberOfPages();   // calculates the total number of pages
+
+// ===============================================
+
+document.querySelector('#next').addEventListener('click', nextPage);
+document.getElementById('previous').addEventListener('click', previousPage);
+document.getElementById('first').addEventListener('click', firstPage);
+document.getElementById('last').addEventListener('click', lastPage);
+
+function getNumberOfPages() {
+    return Math.ceil(library.length / numberPerPage);
+}
+
+function nextPage() {
+    currentPage += 1;
+    console.log('next page');
+    generateLibrary();
+}
+
+function previousPage() {
+    currentPage -= 1;
+    generateLibrary();
+}
+
+function firstPage() {
+    currentPage = 1;
+    generateLibrary();
+}
+
+function lastPage() {
+    currentPage = numberOfPages;
+    generateLibrary();
+}
+
+function check() {
+    document.getElementById("next").disabled = currentPage == numberOfPages ? true : false;
+    document.getElementById("previous").disabled = currentPage == 1 ? true : false;
+    document.getElementById("first").disabled = currentPage == 1 ? true : false;
+    document.getElementById("last").disabled = currentPage == numberOfPages ? true : false;
+}
+
+// ===============================================
+
 // Default number of words on page load
 let wordCount = 25;
 let chosenText;
 
-const generateLibrary = (books) => {
-    let randBook = Math.floor(Math.random() * books.length);
-    let radioHTML = books.map((book, i) => {
-        if(i === randBook|| i === 0) {
-            setCurrentText(book.text);
+const generateLibrary = () => {
+    var begin = ((currentPage - 1) * numberPerPage);
+    var end = begin + numberPerPage;
+
+    pageList = library.slice(begin, end);
+    check();         // determines the states of the pagination buttons
+
+    let randBook = Math.floor(Math.random() * pageList.length);
+    let radioHTML = pageList.map((book, i) => {
+        if(i === randBook) {
             chosenText = book;
+            setCurrentText(book.text);
+            console.log(chosenText);
         }
         return `
             <li>
@@ -138,4 +193,4 @@ copyTextBtn.addEventListener('click', function(e) {
     }, 3000);
 });
 
-generateLibrary(library);
+generateLibrary();

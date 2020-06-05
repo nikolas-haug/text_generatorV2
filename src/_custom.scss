@@ -103,3 +103,8 @@ textarea {
     background: $color-grey-light;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
 }
+
+input[type="button"]:disabled {
+    background-color: $color-grey-light;
+    color: $color-grey-dark;
+}
