@@ -6,12 +6,19 @@
 
 body {
     background: url('../images/old-books-on-shelf.jpeg') no-repeat;
+    backdrop-filter: grayscale(1);
     background-size: cover;
 }
 
 header {
     padding: 1rem 0;
+    border-bottom: 1px solid lighten($color: $color-primary, $amount: 30%);
+    background-color: $color-grey-light;
     h1 {
+        color: $color-secondary;
+        text-transform: uppercase;
+        font-weight: 300;
+        letter-spacing: 2px;
         text-shadow: 0 2px 3px $color-grey-dark;
     }
     p {
@@ -20,16 +27,15 @@ header {
     }
 }
 
-main {
+main { 
     background-color: $color-grey-light;
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
-    border-radius: .5rem;
-    box-shadow: 0 2px 7px $color-grey-dark;
-    @media only screen and (max-width: $small) {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+    padding-top: 2rem;
+}
+
+footer {
+    padding: 2rem 0;
+    background-color: $color-grey-light;
+    border-top: 1px solid lighten($color: $color-primary, $amount: 30%);
 }
 
 .text-section {
