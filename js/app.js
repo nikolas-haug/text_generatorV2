@@ -107,10 +107,12 @@ const generateLibrary = () => {
 
     let randBook = Math.floor(Math.random() * pageList.length);
     let radioHTML = pageList.map((book, i) => {
+        console.log(book.title);
+
         if(i === randBook) {
             chosenText = book;
             setCurrentText(book.text);
-            console.log(chosenText);
+            // console.log(chosenText);
         }
         return `
             <li>
@@ -129,22 +131,22 @@ libraryList.addEventListener('change', function(e) {
     if(target.className !== 'radio-btn' && target.className !== 'radio-label') {
         return;
     }
-    chosenText = library[target.getAttribute('data-id')];
-    setCurrentText(library[target.getAttribute('data-id')].text);
+    chosenText = pageList[target.getAttribute('data-id')];
+    setCurrentText(pageList[target.getAttribute('data-id')].text);
 });
 
 const setCurrentText = (text) => {
     let numWords = wordCount;
     wordCountInput.value = wordCount;
     generatedText.value = text.split(' ', numWords).join(' ');
-    wordCountInput.style.color = 'initial';
     checkInputLength();
 }
 
 const checkInputLength = () => {
+    wordCountInput.style.color = 'initial';
     if(!chosenText) return;
     let maxLength = chosenText.text.split(' ').length;
-    if(wordCount > maxLength) {
+    if(wordCount >= maxLength) {
         wordCount = maxLength;
         wordCountInput.value = maxLength;
         wordCountInput.style.color = 'red';
