@@ -1477,8 +1477,7 @@ kbd {
 *
 */
 body {
-  background: url("../images/old-books-on-shelf.jpeg") no-repeat;
-  backdrop-filter: grayscale(1);
+  background: url("../images/old-books-on-shelf-grayscale.jpg") no-repeat;
   background-size: cover; }
 
 header {
